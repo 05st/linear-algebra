@@ -1,6 +1,9 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <chrono>
+
+using namespace std::chrono;
 
 class Matrix {
 public:
@@ -163,12 +166,13 @@ private:
 };
 
 void main() {
-	std::vector<std::vector<double>> data = { {1, 1, 0, 0, 0, 0}, { 2,2,2,0,0,0 }, { 0,3,3,3,0,0 }, { 0,0,4,4,4,0 }, { 0,0,0,5,5,5 }, { 0,0,0,0,6,6 } };
+	/*std::vector<std::vector<double>> data = { {1, 1, 0, 0, 0, 0}, { 2,2,2,0,0,0 }, { 0,3,3,3,0,0 }, { 0,0,4,4,4,0 }, { 0,0,0,5,5,5 }, { 0,0,0,0,6,6 } };
 
 	Matrix matrix = Matrix(data);
 	matrix.display();
-	std::cout << matrix.determinant() << std::endl << std::endl;
+	std::cout << matrix.determinant() << std::endl << std::endl;*/
 
+	auto start = high_resolution_clock::now();
 	std::vector<std::vector<double>> data2 = {
 		{1, 3, 6, -55, 1, 22, 8},
 		{-10, 3, 8, 24, 128, 529, 33},
@@ -180,7 +184,31 @@ void main() {
 	};
 	Matrix matrix2 = Matrix(data2);
 	matrix2.display();
-	std::cout << matrix2.determinant() << std::endl << std::endl;
+	std::cout << matrix2.determinant();
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>(stop - start);
+
+	std::cout << std::endl << (duration.count() / 1e+6);
+
+
+	/*std::vector<std::vector<double>> data = {
+		{1,0,0,0,0,0,0,0,0,0,0,0,},
+		{0,1,0,0,0,0,0,0,0,0,0,0,},
+		{0,0,1,0,0,0,0,0,0,0,0,0,},
+		{0,0,0,1,0,0,0,0,0,0,0,0,},
+		{0,0,0,0,1,0,0,0,0,0,0,0,},
+		{0,0,0,0,0,1,0,0,0,0,0,0,},
+		{0,0,0,0,0,0,1,0,0,0,0,0,},
+		{0,0,0,0,0,0,0,1,0,0,0,0,},
+		{0,0,0,0,0,0,0,0,1,0,0,0,},
+		{0,0,0,0,0,0,0,0,0,1,0,0,},
+		{0,0,0,0,0,0,0,0,0,0,1,0,},
+		{0,0,0,0,0,0,0,0,0,0,0,1,},
+	};
+
+	Matrix matrix = Matrix(data);
+	matrix.display();
+	std::cout << matrix.determinant() << std::endl << std::endl;*/
 
 	std::cin.get();
 }
