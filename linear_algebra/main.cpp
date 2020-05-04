@@ -101,6 +101,16 @@ public:
 		return -1; // could not compute determinant or matrix is not a square
 	}
 
+	Matrix transpose() {
+		std::vector<std::vector<double>> transposedData;
+
+		for (int columnIndex = 0; columnIndex < this->getRow(0).size(); columnIndex++) {
+			transposedData.push_back(this->getColumn(columnIndex));
+		}
+
+		return Matrix(transposedData);
+	}
+
 	void display() {
 		for (std::vector<double> row : this->data) {
 			std::string ftext = "|";
@@ -167,14 +177,11 @@ void main() {
 		{1, 3, 6, -55, 1, 22, 8},
 		{-10, 3, 8, 24, 128, 529, 33},
 		{6, 1, 3, 9, 6, 8, -3},
-		{-3, -76, -2, 6, 1, 5, 2},
-		{-51, 12, 3, 7, 3, 1, 7},
-		{8, 4, 7, 3, 1, 6, -4},
-		{1, 3, -2, -6, 23, 6, 1}
 	};
 	Matrix matrix2 = Matrix(data2);
 	matrix2.display();
-	std::cout << matrix2.determinant();
+	std::cout << std::endl;
+	(matrix2.transpose() * matrix2).display();
 
 	std::cin.get();
 }
