@@ -65,8 +65,19 @@ public:
 		return this->dot(Vector(this->data));
 	}
 
+	Vector unit() {
+		std::vector<double> unitData;
+
+		double magnitude = this->magnitude();
+		for (double element : this->data) {
+			unitData.push_back(element / magnitude);
+		}
+
+		return Vector(unitData);
+	}
+
 	void display() {
-		std::string ftext = "|";
+		std::string ftext = "[";
 
 		for (double element : this->data) {
 			std::string text = std::to_string(element);
@@ -76,10 +87,10 @@ public:
 					text = text.substr(0, text.size() - 1);
 				}
 			}
-			ftext = ftext + " " + text + "\t";
+			ftext = ftext + " " + text;
 		}
 
-		std::cout << ftext + " |" << std::endl;
+		std::cout << ftext + " ]" << std::endl;
 	}
 
 	Vector(std::vector<double> data) {
