@@ -39,7 +39,23 @@ public:
 		return sum;
 	}
 
-	
+	Vector cross(Vector vector) {
+		if (vector.data.size() == 3 && this->data.size() == 3) { // cross product for 3d vectors only
+			std::vector<double> crossedData;
+
+			std::vector<double> selfData = this->data;
+			std::vector<double> vecData = vector.data;
+
+			crossedData.push_back(selfData[1] * vecData[2] - selfData[2] * vecData[1]);
+			crossedData.push_back(selfData[2] * vecData[0] - selfData[0] * vecData[2]);
+			crossedData.push_back(selfData[0] * vecData[1] - selfData[1] * vecData[0]);
+
+			return Vector(crossedData);
+		}
+		else {
+			return Vector(this->data);
+		}
+	}
 
 	double magnitude() {
 		return sqrt(this->sqrMagnitude());
